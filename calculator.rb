@@ -1,4 +1,4 @@
-# Implements logic of a calculator
+  # Implements logic of a calculator
 class Calculator
   # This method greets the user on start up and request their name
   # It returns their name
@@ -13,12 +13,7 @@ class Calculator
 
   # This method ask the user what type of calculation they would like to perform
   # It returns the operation or an error for erroneous entry
-  def request_calculation_type
-    print(
-      'Type 1 to add, 2 to subtract, 3 to multiply, or '\
-      '4 to divide two numbers: '
-    )
-    operation_selection = gets.to_i
+  def request_calculation_type(operation_selection)
     if operation_selection == 1
       'add'
     elsif operation_selection == 2
@@ -35,6 +30,11 @@ class Calculator
   # This method performs the requested calculation
   # It returns the result of the calculation
   def calculate_answer(operator, a, b)
+    if  !/\d+/.match(a) && !/\d+/.match(a)
+      return 'error'
+    end
+    a = a.to_i
+    b = b.to_i
     if operator == 'add'
       a + b
     elsif operator == 'subtract'
@@ -42,6 +42,9 @@ class Calculator
     elsif operator == 'multiply'
       a * b
     elsif operator == 'divide'
+      if b==0
+        return "undefined"
+      end
       a / b
     end
   end
